@@ -1,0 +1,16 @@
+export enum Animation {
+  Dance = 0,
+  Death = 1,
+  Idle = 2,
+  Jump = 3,
+  No = 4,
+  Punch = 5,
+  Running = 6,
+  Sitting = 7,
+  Standing = 8,
+  ThumbsUp = 9,
+  Walking = 10,
+  WalkJump = 11,
+  Wave = 12,
+  Yes = 13,
+}
