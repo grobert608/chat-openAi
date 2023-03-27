@@ -1,0 +1,148 @@
+#root {
+  height: 100vh;
+}
+
+#root-wrapper { 
+  height: 100%; width: 100%;
+  transition: all 0.2s ease;
+}
+
+body {
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  height: 100%;
+  width: 100%;
+}
+
+.chat-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  max-height: 60%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 5px 0 0;
+} 
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  overflow-y: scroll;
+  font-family: sans-serif;
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.chat-message.right {
+  justify-content: flex-end;
+}
+
+.message-content {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 80%;
+}
+
+.chat-message.right .message-content {
+  background-color: blanchedalmond;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #000000;
+}
+
+.chat-message.right .message-time {
+  text-align: right;
+}
+
+.chat-message.typing {
+  align-self: flex-start;
+}
+
+.typing-indicator {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #1e90ff;
+  margin-right: 5px;
+  animation-name: typing;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+}
+
+.chat-input {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chat-input textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.chat-input button:disabled {
+  cursor: not-allowed;
+  background-color: #aaa;
+}
