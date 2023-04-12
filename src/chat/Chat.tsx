@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import React, { createRef } from "react";
+import React, { createRef, useCallback } from "react";
 import { Animation } from "../domain/animation";
 import { Sender } from "../domain/message";
 import { useStores } from "../hooks/useStores";
@@ -8,7 +8,6 @@ import { speakText } from "../speechSynthesis/speechSynthesis";
 
 export const Chat: React.FC = observer(function Chat() {
   const messageRef = createRef<HTMLTextAreaElement>();
-  const buttonRef = createRef<HTMLButtonElement>();
 
   const { historyStore, openAiStore, animationStore } = useStores();
   const { loading, requestWasSent, responseWasRecieved } = openAiStore;
@@ -17,9 +16,10 @@ export const Chat: React.FC = observer(function Chat() {
   const openAi: (histoty: string, question: string) => Promise<string | Error> =
     useOpenAi(true);
 
-  const buttonCallback = async () => {
+  const buttonCallback = useCallback(async () => {
     requestWasSent();
     const question: string = messageRef.current?.value!;
+    messageRef.current!.value = "";
     const response = await openAi(historyFormated, question);
     if (!(response instanceof Error)) {
       addMessage(
@@ -60,12 +60,20 @@ export const Chat: React.FC = observer(function Chat() {
         }
       );
     }
-  };
+  }, [
+    addMessage,
+    animationStore,
+    historyFormated,
+    messageRef,
+    openAi,
+    requestWasSent,
+    responseWasRecieved,
+  ]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
-      buttonRef.current?.click();
-      messageRef.current!.value = "";
+      event.preventDefault();
+      buttonCallback();
     }
   };
 
@@ -76,7 +84,7 @@ export const Chat: React.FC = observer(function Chat() {
         ref={messageRef}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <button ref={buttonRef} onClick={buttonCallback} disabled={loading}>
+      <button onClick={buttonCallback} disabled={loading}>
         Send
       </button>
     </div>

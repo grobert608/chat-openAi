@@ -35,7 +35,8 @@ export function useOpenAi(
     async (histoty: string, question: string) => {
       if (mock && question.trim() !== "") {
         return "Hello, I am a mock response";
-      } else if (question.trim() !== "") {
+      }
+      if (question.trim() !== "") {
         try {
           const prompt: string = createPrompt(histoty, question);
           const result = await openai.createCompletion({
@@ -51,9 +52,8 @@ export function useOpenAi(
             return Error("No response");
           }
         }
-      } else {
-        return Error("No response");
       }
+      return Error("No response");
     },
     [mock]
   );

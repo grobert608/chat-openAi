@@ -16,7 +16,7 @@ export const Root = () => {
   }, [historyStore]);
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className="root">
       <div className="chat-container">
         <History />
         <Chat />

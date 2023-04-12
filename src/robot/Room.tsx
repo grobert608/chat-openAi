@@ -5,11 +5,12 @@ import { Engine, Scene } from "react-babylonjs";
 import { RootStoreContext, useStores } from "../hooks/useStores";
 import { Ground } from "./Ground";
 import { RobotModel } from "./RoborModel";
+import "./Room.css"
 
 export const Room: React.FC = observer(function Room() {
   const store = useStores();
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className="room">
       <Engine antialias adaptToDeviceRatio canvasId="babylon-canvas">
         <Scene>
           <freeCamera
