@@ -14,7 +14,7 @@ export const Chat: React.FC = observer(function Chat() {
   const { historyFormated, addMessage } = historyStore;
 
   const openAi: (histoty: string, question: string) => Promise<string | Error> =
-    useOpenAi(true);
+    useOpenAi();
 
   const buttonCallback = useCallback(async () => {
     requestWasSent();
@@ -73,7 +73,9 @@ export const Chat: React.FC = observer(function Chat() {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      buttonCallback();
+      if (!loading) {
+        buttonCallback();
+      }
     }
   };
 
