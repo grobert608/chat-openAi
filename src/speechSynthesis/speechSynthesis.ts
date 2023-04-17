@@ -1,19 +1,22 @@
-export function speakText(
+export async function speakText(
   text: string,
-  onStart?: (e: SpeechSynthesisEvent) => void,
-  onEnd?: (e: SpeechSynthesisEvent) => void
+  onStart?: (e: SpeechSynthesisEvent) => void
 ) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  if (onStart) {
-    utterance.onstart = (event) => onStart(event);
-  }
-  if (onEnd) {
-    utterance.onend = (event) => onEnd(event);
-  }
-  utterance.onerror = (event) => {
-    console.log("speechSynthesis error", event);
-    speechSynthesis.cancel();
-    speakText("Sorry!");
-  };
-  speechSynthesis.speak(utterance);
+  return new Promise<void>((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    if (onStart) {
+      utterance.onstart = (event) => onStart(event);
+    }
+
+    utterance.onend = (event) => {
+      resolve();
+    };
+
+    utterance.onerror = (event) => {
+      console.log("speechSynthesis error", event);
+      speechSynthesis.cancel();
+      resolve();
+    };
+    speechSynthesis.speak(utterance);
+  });
 }

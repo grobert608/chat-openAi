@@ -2,10 +2,10 @@ import { action, observable } from "mobx";
 import { Message, Sender } from "../domain/message";
 import localforage from "localforage";
 
-export const historyStore: HistoryStore = observable(
+export const historyStore: HistoryStore = observable<HistoryStore>(
   {
     id: 0,
-    history: [] as Message[],
+    history: [],
     get historyFormated(): string {
       return this.history
         .map((d) => {
@@ -27,10 +27,18 @@ export const historyStore: HistoryStore = observable(
     setId(newId: number) {
       this.id = newId;
     },
+    message: "",
+    setMessage(newMessage: string) {
+      this.message = newMessage;
+    },
+    get canSend() {
+      return this.message.trim().length > 0;
+    },
   },
   {
     addMessage: action.bound,
     setId: action.bound,
+    setMessage: action.bound,
   }
 );
 
@@ -40,4 +48,7 @@ export interface HistoryStore {
   historyFormated: string;
   addMessage: (dialog: Message, toDB?: boolean) => void;
   setId: (newId: number) => void;
+  canSend: boolean;
+  message: string;
+  setMessage: (newMessage: string) => void;
 }

@@ -34,7 +34,7 @@ export function useOpenAi(
   ) => Promise<string | Error> = React.useCallback(
     async (histoty: string, question: string) => {
       if (mock && question.trim() !== "") {
-        return "Hello, I am a mock response";
+        return "Hello, I am a mock response. I have nothing to say on your question " + question;
       }
       if (question.trim() !== "") {
         try {

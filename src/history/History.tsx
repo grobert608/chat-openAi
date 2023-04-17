@@ -25,7 +25,7 @@ export const History: React.FC = observer(function History() {
           myMessage={h.sender === Sender.Human}
         />
       ))}
-      <Typing show={loading} />
+      {!loading && (<Typing/>)}
       <div ref={lastMessage} />
     </div>
   );
