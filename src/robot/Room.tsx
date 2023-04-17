@@ -25,7 +25,7 @@ export const Room: React.FC = observer(function Room() {
           <Skybox
             rootUrl={require(".//asserts/Runyon_Canyon_A_2k_cube_specular.dds")}
           />
-          <freeCamera
+          <targetCamera
             name="camera"
             position={
               currentAnimation === Animation.Wave
