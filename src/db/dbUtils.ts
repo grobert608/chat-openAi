@@ -3,11 +3,7 @@ import { Message } from "../domain/message";
 import { HistoryStore } from "../stores/historyStore";
 
 export function configLocalStorage(): Promise<void> {
-  return localforage.setDriver([
-    localforage.INDEXEDDB,
-    localforage.WEBSQL,
-    localforage.LOCALSTORAGE,
-  ]);
+  return localforage.setDriver(localforage.INDEXEDDB);
 }
 
 export function recoverLastNMessages(n: number, historyStore: HistoryStore) {
