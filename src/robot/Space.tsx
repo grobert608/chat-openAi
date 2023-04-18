@@ -26,7 +26,7 @@ export const Space: React.FC = observer(function Space() {
             direction={mainDirection}
           />
           <Skybox
-            rootUrl={require(".//asserts/Runyon_Canyon_A_2k_cube_specular.dds")}
+            rootUrl={require("./asserts/Runyon_Canyon_A_2k_cube_specular.dds")}
           />
           <targetCamera
             name="camera"

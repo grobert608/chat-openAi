@@ -31,7 +31,7 @@ export const RobotModel: React.FC = observer(function Room() {
     <Suspense fallback={"{Loading..."}>
       <Model
         name="robot-model"
-        rootUrl={require(".//asserts/RobotExpressive.glb")}
+        rootUrl={require("./asserts/RobotExpressive.glb")}
         sceneFilename=""
         onModelLoaded={onModelLoaded}
       />
