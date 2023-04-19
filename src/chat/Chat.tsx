@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { Animation } from "../domain/animation";
 import { Sender } from "../domain/message";
 import { useStores } from "../hooks/useStores";
-import { useOpenAi } from "../open-ai/openAi";
+import { useOpenAi } from "../openAi/openAi";
 import { speakText } from "../speechSynthesis/speechSynthesis";
 
 export const Chat: React.FC = observer(function Chat() {
