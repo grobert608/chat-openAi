@@ -7,6 +7,7 @@ This application is a unique combination of a chatbot and a 3D modeling tool, wh
 - TypeScript
 - React
 - OpenAI API
+- Web Speech API
 - React-babylonjs
 - MobX
 - IndexedDB (localForage)
